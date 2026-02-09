@@ -9,49 +9,57 @@
     :root {
       --bg: #f8fafc;
       --card: #ffffff;
-      --text: #1f2937;
+      --text: #111827;
       --muted: #374151;
       --subtle: #6b7280;
       --border: #e5e7eb;
-      --shadow: 0 10px 25px rgba(0,0,0,0.05);
+      --shadow: 0 10px 25px rgba(0,0,0,0.06);
       --link: #2563eb;
-      --tag: #e5e7eb;
-      --tag-text: #1f2937;
+      --tag: #eef2ff;
+      --tagText: #1f2937;
       --btn: #111827;
-      --btn-text: #ffffff;
-      --btn-hover: #0b1220;
+      --btnText: #ffffff;
+      --btnHover: #0b1220;
+      --chip: #f3f4f6;
+      --chipText: #111827;
+      --hr: #e5e7eb;
     }
 
-    /* Dark mode variables */
     [data-theme="dark"] {
       --bg: #0b1220;
-      --card: #111827;
+      --card: #0f172a;
       --text: #e5e7eb;
       --muted: #cbd5e1;
       --subtle: #9ca3af;
-      --border: #243244;
-      --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      --border: #22314a;
+      --shadow: 0 18px 40px rgba(0,0,0,0.40);
       --link: #60a5fa;
-      --tag: #1f2a3a;
-      --tag-text: #e5e7eb;
+      --tag: #162443;
+      --tagText: #e5e7eb;
       --btn: #e5e7eb;
-      --btn-text: #111827;
-      --btn-hover: #cbd5e1;
+      --btnText: #0b1220;
+      --btnHover: #cbd5e1;
+      --chip: #111c33;
+      --chipText: #e5e7eb;
+      --hr: #22314a;
     }
+
+    /* Prevent theme flash */
+    html { background: var(--bg); }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    .container {
+    .wrap {
       max-width: 1100px;
-      margin: auto;
-      padding: 48px 24px;
+      margin: 0 auto;
+      padding: 42px 20px 80px;
     }
 
     .topbar {
@@ -64,127 +72,209 @@
 
     .actions {
       display: flex;
-      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
-    .btn {
+    .btn, .btnLink {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--btn);
-      color: var(--btn-text);
-      border: 1px solid transparent;
-      padding: 10px 12px;
       border-radius: 10px;
+      padding: 10px 12px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 650;
       cursor: pointer;
-      text-decoration: none;
       user-select: none;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
     }
 
-    .btn:hover {
-      background: var(--btn-hover);
+    .btn:active, .btnLink:active { transform: translateY(1px); }
+
+    .btn.primary, .btnLink.primary {
+      background: var(--btn);
+      color: var(--btnText);
     }
+    .btn.primary:hover, .btnLink.primary:hover { background: var(--btnHover); }
 
     .btn.secondary {
       background: transparent;
       color: var(--text);
-      border: 1px solid var(--border);
+      border-color: var(--border);
     }
+    .btn.secondary:hover { background: rgba(127,127,127,0.10); }
 
-    .btn.secondary:hover {
-      background: rgba(127,127,127,0.12);
+    header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 26px 24px;
     }
 
     h1 {
-      font-size: 36px;
-      margin: 0 0 4px;
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 0.2px;
     }
 
-    h2 {
-      margin-top: 48px;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 6px;
-      font-size: 24px;
-    }
-
-    h3 { margin-top: 32px; font-size: 20px; }
-    h4 { margin-top: 16px; font-size: 17px; font-weight: 600; }
-
-    p { margin: 10px 0; }
-    ul { padding-left: 20px; }
-    li { margin: 6px 0; }
-
-    .header { margin-bottom: 12px; }
-
-    .title {
-      font-weight: 600;
-      font-size: 18px;
+    .subtitle {
+      margin-top: 6px;
+      font-size: 16px;
       color: var(--muted);
+      font-weight: 650;
     }
 
     .contact {
-      margin-top: 8px;
-      font-size: 14px;
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
       color: var(--muted);
+      font-size: 14px;
+      align-items: center;
     }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
+    a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    .highlight {
-      background: var(--card);
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      margin-top: 18px;
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--chipText);
       border: 1px solid var(--border);
     }
 
-    .section { margin-top: 32px; }
+    .section {
+      margin-top: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px 22px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--hr);
+      letter-spacing: 0.2px;
+    }
+
+    .content {
+      padding-top: 14px;
+    }
+
+    /* Collapsible (still includes all details; just makes it easier to read) */
+    details.section {
+      padding: 0;
+      overflow: hidden;
+    }
+    details.section > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 800;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    details.section > summary::-webkit-details-marker { display: none; }
+    details.section > summary .hint {
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--subtle);
+    }
+    details.section .content { padding: 0 22px 18px; }
+    details.section[open] > summary {
+      border-bottom: 1px solid var(--hr);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--hr);
+      margin: 18px 0;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 18px;
+    }
+
+    h4 {
+      margin: 14px 0 6px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .role {
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--subtle);
+      font-weight: 650;
+      margin-top: 2px;
+    }
+
+    ul { margin: 8px 0 0 18px; padding: 0; }
+    li { margin: 6px 0; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
     .tag {
       display: inline-block;
       background: var(--tag);
-      color: var(--tag-text);
-      border-radius: 8px;
-      padding: 4px 10px;
-      margin: 6px 6px 0 0;
-      font-size: 13px;
+      color: var(--tagText);
       border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .kpi {
+      font-weight: 900;
     }
 
     footer {
-      margin-top: 64px;
+      margin-top: 28px;
       text-align: center;
-      font-size: 13px;
       color: var(--subtle);
+      font-size: 13px;
     }
 
     @media (max-width: 640px) {
       h1 { font-size: 28px; }
-      h2 { font-size: 22px; }
-      .topbar { align-items: flex-start; flex-direction: column; }
+      .topbar { flex-direction: column; align-items: flex-start; }
       .actions { justify-content: flex-start; }
+      details.section > summary { font-size: 18px; }
     }
   </style>
 
   <script>
-    // Apply saved theme ASAP to avoid flash
     (function () {
       const saved = localStorage.getItem("theme");
       if (saved === "dark" || saved === "light") {
         document.documentElement.setAttribute("data-theme", saved);
       } else {
-        // Optional: follow system preference by default
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
       }
@@ -193,152 +283,377 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrap">
 
-    <!-- Top actions -->
     <div class="topbar">
-      <div></div>
+      <div class="chip">📌 shardoolmishra.com</div>
       <div class="actions">
-        <!-- Resume download (put resume.pdf in repo root) -->
-        <a class="btn" href="/resume.pdf" download>⬇️ Download Resume</a>
-
-        <!-- Dark mode toggle -->
+        <a class="btnLink primary" href="/resume.pdf" download>⬇️ Download Resume (PDF)</a>
         <button class="btn secondary" id="themeToggle" type="button">🌙 Dark mode</button>
       </div>
     </div>
 
-    <!-- HEADER -->
-    <div class="header">
-      <h1>Shardool Mishra</h1>
-      <div class="title">Senior Software Development Engineer | Technical Leader</div>
+    <header>
+      <h1>SHARDOOL MISHRA</h1>
+      <div class="subtitle">Senior Software Development Engineer | Technical Leader</div>
       <div class="contact">
-        📧 shardoolmishra3@gmail.com |
-        🔗 <a href="https://linkedin.com/in/shardoolmishra" target="_blank" rel="noreferrer">linkedin.com/in/shardoolmishra</a> |
-        📱 +1-512-599-3004
+        <span class="chip">📧 shardoolmishra3@gmail.com</span>
+        <span class="chip">🔗 <a href="https://linkedin.com/in/shardoolmishra" target="_blank" rel="noreferrer">linkedin.com/in/shardoolmishra</a></span>
+        <span class="chip">📱 +1-512-599-3004</span>
       </div>
-    </div>
+    </header>
 
-    <!-- SUMMARY -->
-    <div class="highlight">
-      <h2>Professional Summary</h2>
-      <p>
-        Senior technical leader with 12+ years of experience building large-scale distributed systems
-        across AWS Inspector, Prime Video Sports, and Amazon Logistics.
-        Proven track record of architecting mission-critical systems handling 300k+ TPS,
-        leading cross-organizational initiatives, and mentoring 10+ engineers.
-        U.S. Patent holder with deep expertise in distributed systems, security infrastructure,
-        ML-based automation, and operational excellence.
-      </p>
-    </div>
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="section">
+      <h2>PROFESSIONAL SUMMARY</h2>
+      <div class="content">
+        <p>
+          Senior technical leader with 12+ years of experience building large-scale distributed systems across AWS Inspector,
+          Prime Video Sports, and Amazon Logistics. Proven track record of architecting mission-critical systems handling
+          300k+ TPS, leading cross-organizational initiatives, and mentoring 10+ engineers. Expertise in distributed systems,
+          security infrastructure, ML-based automation, and operational excellence. Successfully launched revenue-critical
+          systems with zero downtime, created reusable frameworks adopted by multiple teams, and consistently simplified
+          complex architectures. U.S. Patent holder for database state management innovations.
+        </p>
+      </div>
+    </section>
 
-    <!-- SKILLS -->
-    <div class="section">
-      <h2>Technical Skills</h2>
+    <!-- TECHNICAL SKILLS -->
+    <details class="section" open>
+      <summary>
+        <span>TECHNICAL SKILLS</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <h3>Languages & Frameworks</h3>
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span>
+          <span class="tag">Vue.js</span><span class="tag">TypeScript</span><span class="tag">React</span>
+          <span class="tag">Spring Boot</span><span class="tag">AWS Lambda</span>
+        </div>
 
-      <p><strong>Languages & Frameworks</strong></p>
-      <span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span>
-      <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vue.js</span>
-      <span class="tag">Spring Boot</span><span class="tag">AWS Lambda</span>
+        <h3>AWS Services</h3>
+        <div class="tags">
+          <span class="tag">Inspector</span><span class="tag">EC2</span><span class="tag">S3</span>
+          <span class="tag">DynamoDB</span><span class="tag">Lambda</span><span class="tag">CloudWatch</span>
+          <span class="tag">CloudTrail</span><span class="tag">ECS</span><span class="tag">ECR</span>
+          <span class="tag">Kinesis</span><span class="tag">Fargate</span><span class="tag">OpenSearch</span>
+        </div>
 
-      <p><strong>AWS Services</strong></p>
-      <span class="tag">Inspector</span><span class="tag">EC2</span><span class="tag">S3</span>
-      <span class="tag">DynamoDB</span><span class="tag">CloudWatch</span>
-      <span class="tag">ECS</span><span class="tag">Fargate</span><span class="tag">OpenSearch</span>
+        <h3>Infrastructure & Tools</h3>
+        <div class="tags">
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Flink</span>
+          <span class="tag">Neptune</span><span class="tag">CDK</span><span class="tag">CloudFormation</span>
+          <span class="tag">Terraform</span><span class="tag">Git</span><span class="tag">Maven</span>
+          <span class="tag">Gradle</span>
+        </div>
 
-      <p><strong>Infrastructure & Tools</strong></p>
-      <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Flink</span>
-      <span class="tag">Terraform</span><span class="tag">CloudFormation</span>
-      <span class="tag">Git</span><span class="tag">CDK</span>
+        <h3>Specializations</h3>
+        <div class="tags">
+          <span class="tag">Distributed Systems</span>
+          <span class="tag">Security Infrastructure</span>
+          <span class="tag">OCSF Compliance</span>
+          <span class="tag">ML/AI Integration</span>
+          <span class="tag">Container Orchestration</span>
+          <span class="tag">Metering & Billing Systems</span>
+          <span class="tag">Load Testing</span>
+          <span class="tag">Shadow Mode Deployments</span>
+        </div>
+      </div>
+    </details>
 
-      <p><strong>Specializations</strong></p>
-      <span class="tag">Distributed Systems</span>
-      <span class="tag">Security Infrastructure</span>
-      <span class="tag">OCSF Compliance</span>
-      <span class="tag">ML / AI Integration</span>
-      <span class="tag">Metering & Billing</span>
-      <span class="tag">Load Testing</span>
-      <span class="tag">Shadow Deployments</span>
-    </div>
+    <!-- KEY ACHIEVEMENTS & PATENTS (as provided) -->
+    <details class="section" open>
+      <summary>
+        <span>KEY ACHIEVEMENTS & PATENTS</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li>✓ <strong>U.S. Patent 10,635,660</strong> – "Determining State of Database Applications" (developed during Tier-1 database migration)</li>
+          <li>✓ <strong>30+ Design Documents</strong> setting technical direction for teams across AWS Inspector and Prime Video</li>
+          <li>✓ <strong>3+ Reusable Tools & Frameworks</strong> adopted by multiple teams organization-wide reducing development time</li>
+          <li>✓ <strong>Zero Data Loss</strong> on revenue-critical metering launch through innovative shadow mode deployment strategy</li>
+          <li>✓ <strong>300K TPS at 20ms p99</strong> latency on geo-restriction platform; <strong>50× efficiency improvement</strong> on logistics optimization</li>
+          <li>✓ <strong>70% reduction</strong> in sports onboarding time (2 months → 2 weeks); <strong>30% reduction</strong> in operational overhead via ML automation</li>
+          <li>✓ <strong>60% reduction</strong> in false positives eliminating 8M+ daily errors; <strong>25B documents</strong> scaled with multi-cluster architecture</li>
+          <li>✓ <strong>20+ Teams</strong> collaborated with across organizations; successfully resolved competing team priorities</li>
+          <li>✓ <strong>10M+ notifications</strong> delivered across major sporting events reaching 800K+ customers per event</li>
+        </ul>
+      </div>
+    </details>
 
-    <!-- ACHIEVEMENTS -->
-    <div class="section">
-      <h2>Key Achievements & Patents</h2>
-      <ul>
-        <li><strong>U.S. Patent 10,635,660</strong> – Determining State of Database Applications</li>
-        <li>Architected platforms handling <strong>300K TPS at 20ms p99</strong></li>
-        <li>Scaled OpenSearch to <strong>25B documents</strong> using multi-cluster architecture</li>
-        <li>Delivered revenue-critical systems with <strong>zero data loss</strong></li>
-        <li>Reduced operational overhead by <strong>30–70%</strong> via automation & ML</li>
-        <li>Led initiatives spanning <strong>20+ teams</strong> across AWS & Prime Video</li>
-      </ul>
-    </div>
+    <!-- PROFESSIONAL EXPERIENCE (FULL, NO SUMMARY) -->
+    <details class="section" open>
+      <summary>
+        <span>PROFESSIONAL EXPERIENCE</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
 
-    <!-- EXPERIENCE -->
-    <div class="section">
-      <h2>Professional Experience</h2>
+        <h3>Amazon Web Services (AWS) - Senior Software Development Engineer</h3>
+        <div class="meta">AWS Inspector | Seattle, WA | 2024 - Present</div>
 
-      <h3>Amazon Web Services (AWS)</h3>
-      <h4>AWS Inspector | Senior Software Development Engineer (2024 – Present)</h4>
-      <ul>
-        <li>Technical lead for OCSF security compliance integrations</li>
-        <li>Reduced onboarding time by 75% via reusable model generation framework</li>
-        <li>Led OpenSearch migration to multi-cluster architecture supporting 25B documents</li>
-        <li>Delivered container vulnerability scanning platform reducing false positives by 60%</li>
-        <li>Launched metering & billing system with zero revenue impact</li>
-      </ul>
+        <h4><span class="role">OCSF Security Compliance Integration</span> | <em>Technical Lead</em></h4>
+        <ul>
+          <li>Led team of 3-4 engineers to integrate AWS Inspector with Binder for OCSF (Open Cybersecurity Schema Framework) compliance</li>
+          <li>Created reusable model generation system adopted by multiple teams organization-wide, <span class="kpi">reducing onboarding time by 75%</span></li>
+          <li>Conducted comprehensive load testing identifying critical integration issues before production impact</li>
+          <li>Brought integration failure count from persistent issues to <span class="kpi">zero</span> through systematic root cause analysis across multiple systems</li>
+          <li>Primary liaison between security teams, representing Inspector in cross-organizational security meetings</li>
+        </ul>
 
-      <h3>Amazon</h3>
-      <h4>Prime Video Sports | Senior Software Development Engineer (2019 – 2024)</h4>
-      <ul>
-        <li>Architected geo-restriction platform handling 300K TPS globally</li>
-        <li>Built ML-based automation reducing operational overhead by 30%</li>
-        <li>Delivered real-time notification platform reaching 10M+ users</li>
-        <li>Defined domain architectures enabling parallel team execution</li>
-      </ul>
+        <h4><span class="role">Container Vulnerability Scanning Platform</span> | <em>Tech Lead</em></h4>
+        <ul>
+          <li>Delivered launch of accurate and efficient container scanning system, replacing legacy publisher with serverless AWS Lambda and DynamoDB solution</li>
+          <li><span class="kpi">Cut false positives by 60%</span>, eliminating 8M+ daily errors and improving customer trust in vulnerability data</li>
+          <li>Designed and implemented shadow mode testing to validate new system alongside legacy without production risk</li>
+        </ul>
 
-      <h4>Amazon Logistics | Software Development Engineer II (2013 – 2019)</h4>
-      <ul>
-        <li>Invented cross-dock optimization delivering 50× efficiency gains</li>
-        <li>Improved warehouse configuration accuracy by 20%</li>
-      </ul>
-    </div>
+        <h4><span class="role">OpenSearch Migration & Multi-Cluster Architecture</span> | <em>Architect</em></h4>
+        <ul>
+          <li>Led strategic database migration de-risking AWS Inspector against 2026 data volume projections</li>
+          <li>Transitioned from single to multi-cluster architecture, scaling capacity for <span class="kpi">25B documents</span></li>
+          <li>Ensured system resilience, high availability, and performant data access for both findings and aggregations</li>
+          <li>Designed traffic routing, data consistency, and graceful failover mechanisms for complex distributed system</li>
+        </ul>
+
+        <h4><span class="role">Unified Security Findings Platform</span> | <em>Cross-Team Lead</em></h4>
+        <ul>
+          <li>Leading cross-teams AWS initiative to unify multiple security finding providers under single platform</li>
+          <li>Enabling customers to view all risks and vulnerabilities in one place; launch planned for re:Invent</li>
+          <li>Coordinating with 5+ teams across AWS security ecosystem for seamless integration</li>
+        </ul>
+
+        <h4><span class="role">Metering & Billing System Launch</span> | <em>Project Lead</em></h4>
+        <ul>
+          <li>Drove end-to-end development and launch of metering system directly impacting <span class="kpi">customer billing and revenue tracking</span></li>
+          <li>Designed innovative shadow mode deployment running old and new systems in parallel, ensuring <span class="kpi">zero data loss</span> during migration</li>
+          <li>Authored comprehensive launch strategy with phased rollout: shadow mode → data validation → processor activation → full launch</li>
+          <li>Validated system behavior under production-scale traffic through extensive load testing</li>
+          <li>Successfully launched high-stakes system preserving customer billing accuracy and revenue tracking</li>
+        </ul>
+
+        <h4><span class="role">Container Security Infrastructure</span> | <em>Senior Engineer</em></h4>
+        <ul>
+          <li>Designed and implemented major components of container processing engine with shadow mode testing capability</li>
+          <li>Eliminated persistent failures in container resource state tracking through comprehensive race condition fixes</li>
+          <li>Improved duplicate message handling reducing unnecessary processing cycles and system load</li>
+          <li>Introduced critical observability metrics for proactive issue detection, reducing customer-impacting incidents</li>
+        </ul>
+
+        <h4><span class="role">AI Adoption & Developer Productivity</span> | <em>Innovation Leader</em></h4>
+        <ul>
+          <li>Championed AI adoption across teams by introducing coding assistants, AI-driven documentation, and ticket automation</li>
+          <li>Built AI knowledge base for AWS Inspector to accelerate onboarding and improve system comprehension</li>
+          <li>Created intelligent git commit tool with automatic change summaries and detailed development metrics tracking</li>
+          <li>Built local cloud storage testing utility eliminating extensive mocking, enabling meaningful integration tests</li>
+        </ul>
+
+        <h4><span class="role">Operational Excellence & Technical Leadership</span></h4>
+        <ul>
+          <li>Wrote comprehensive operational pain point document systematically tracking team issues, becoming roadmap for improvements</li>
+          <li>Reviewed design documents from all Inspector teams; delivered Best Practices session raising engineering standards</li>
+          <li>Created comprehensive documentation index becoming central reference for security integration efforts</li>
+          <li>Influenced architectural decisions to eliminate distributed locking complexity through simpler approaches</li>
+        </ul>
+
+        <hr />
+
+        <h3>Amazon - Senior Software Development Engineer</h3>
+        <div class="meta">Prime Video Sports | Seattle, WA | 2019 - 2024</div>
+
+        <h4><span class="role">Geo-Restriction Platform Redesign</span> | <em>Tech Lead & Architect</em></h4>
+        <ul>
+          <li>Redesigned Prime Video's geo-restriction platform into scalable, rule-driven system on AWS Fargate</li>
+          <li>Achieved <span class="kpi">300K TPS with &lt;20ms p99 latency</span> handling real-time access validation for live sports globally</li>
+          <li>Adopted by three teams, standardizing geo-validation across Prime Video streaming services</li>
+          <li>Authored comprehensive design documents covering architecture, API models, caching strategies, and optimizations</li>
+        </ul>
+
+        <h4><span class="role">ML-Based State Management Automation</span> | <em>Technical Lead</em></h4>
+        <ul>
+          <li>Designed automated state management system for live events using <span class="kpi">machine learning-based solution</span></li>
+          <li><span class="kpi">Reduced operational overhead by 30%</span> by orchestrating playback workflows automatically</li>
+          <li>Automated play-button activation, recording triggers, and state transitions for live sporting events</li>
+          <li>Eliminated manual intervention in critical customer-facing workflows improving reliability and response time</li>
+        </ul>
+
+        <h4><span class="role">Sports Onboarding Automation</span> | <em>Project Lead</em></h4>
+        <ul>
+          <li><span class="kpi">Accelerated live sports onboarding by 70%</span> through end-to-end merchandising workflow automation</li>
+          <li><span class="kpi">Cut onboarding time from 2 months to 2 weeks</span>, reducing manual effort by 40%</li>
+          <li>Partnered with Operations teams for requirements gathering and comprehensive testing</li>
+          <li>End-to-end automation from content ingestion to customer-facing merchandising displays</li>
+        </ul>
+
+        <h4><span class="role">Alexa Voice Assistant Integration</span> | <em>Integration Lead</em></h4>
+        <ul>
+          <li>Led design and integration of Prime Video Live Events with Alexa voice assistant platform</li>
+          <li>Enabled live event information on Alexa devices through collaboration with three partner teams</li>
+          <li>Explored concept in internal hackathon, then developed into production system with cross-organizational alignment</li>
+          <li>Successfully integrated with notification delivery systems explaining Prime Video use cases and requirements</li>
+        </ul>
+
+        <h4><span class="role">Real-Time Push Notifications Platform</span> | <em>End-to-End Owner</em></h4>
+        <ul>
+          <li>Built and led cross-team development of real-time push notification system for Prime Video</li>
+          <li>Delivered <span class="kpi">10M+ notifications across 13 major sporting events in 2021</span>, each reaching over 800K customers</li>
+          <li>Platform has since scaled to <span class="kpi">10+ additional sports categories</span> serving millions of customers</li>
+          <li>Proposed solution, secured leadership buy-in, and collaborated with multiple teams on design and implementation</li>
+          <li>Wrote business requirements document and presented to product management, achieving cross-organizational alignment</li>
+        </ul>
+
+        <h4><span class="role">Personalization Strategy & Domain Architecture</span> | <em>Technical Lead</em></h4>
+        <ul>
+          <li>Defined ownership boundaries between Live events and Video Personalization teams</li>
+          <li>Authored strategic Personalization Technical Architecture document setting short and long-term direction</li>
+          <li>Reviewed and signed off by principal engineers; aligned competing teams enabling parallel development</li>
+          <li><span class="kpi">Unified cross-team operations by establishing clear charters and domain boundaries</span>, significantly boosting execution speed</li>
+        </ul>
+
+        <h4><span class="role">Sports Data Domain Architecture</span> | <em>Architect</em></h4>
+        <ul>
+          <li>Authored domain analysis defining clear boundaries between real-time sports data and knowledge graph systems</li>
+          <li>Collaborated with partner teams on detailed domain boundaries document preventing future team blocking</li>
+          <li>Created directional technical architecture for future dedicated team before it existed</li>
+          <li>Demonstrated strategic thinking about organizational structure aligned with technical architecture</li>
+        </ul>
+
+        <h4><span class="role">LEMA (Live Event Metadata Architecture)</span> | <em>Project Owner</em></h4>
+        <ul>
+          <li>Stepped in when original designer left; took ownership of complex LEMA initiative affecting multiple teams</li>
+          <li>Simplified launch design saving <span class="kpi">3-4 weeks of development time</span> while maintaining quality standards</li>
+          <li>Launched with &lt;250ms latency meeting 300ms SLA; built classification data pipeline enabling the system</li>
+          <li>Designed data publishing system influencing partner teams to improve API encapsulation and design</li>
+        </ul>
+
+        <h4><span class="role">Extensive Cross-Team Collaboration</span></h4>
+        <ul>
+          <li>Worked with 20+ teams across Prime Video, streaming services, and partner organizations</li>
+          <li>Collaborated with SDE2s and SDE3s on data interface design and exception handling</li>
+          <li>Worked with L6 manager on project prioritization and cross-organizational alignment</li>
+          <li>Worked as technical resource in partner team's codebase to unblock critical launch dependencies</li>
+          <li>Influenced LESM (Live Event State Management) architectural decisions moving complexity from client implementations to centralized services</li>
+        </ul>
+
+        <hr />
+
+        <h3>Amazon - Software Development Engineer II</h3>
+        <div class="meta">Amazon Logistics | Seattle, WA | 2013 - 2019</div>
+
+        <h4><span class="role">Cross-Dock Optimization for Compound Containers</span> | <em>Inventor & Tech Lead</em></h4>
+        <ul>
+          <li>Invented and deployed novel cross-dock optimization solution for large-scale container management</li>
+          <li>Achieved <span class="kpi">50× improvement in package processing efficiency</span> and reduced handling time across multiple facilities</li>
+          <li>Enabled optimized sortation plans for compound containers throughout distribution network</li>
+          <li>Improved tracking and management of containers throughout facility operations</li>
+        </ul>
+
+        <h4><span class="role">Sortation Configuration Management</span> | <em>Lead Engineer</em></h4>
+        <ul>
+          <li>Improved sortation configuration management helping warehouse managers <span class="kpi">reduce configuration inaccuracy by 20%</span></li>
+          <li>Enhanced sortation efficiency and operational reliability across multiple distribution facilities</li>
+          <li>Streamlined configuration workflows reducing errors and improving operational decision-making</li>
+        </ul>
+
+      </div>
+    </details>
+
+    <!-- LEADERSHIP & MENTORSHIP -->
+    <details class="section" open>
+      <summary>
+        <span>LEADERSHIP & MENTORSHIP</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <p><strong>Formal Mentorship:</strong> Currently mentoring 2 SDEs and 1 SDE3; conducting regular 1-1s with 3 Inspector engineers</p>
+        <p><strong>Mentorship Impact:</strong> Mentored 2 SDE2s who were promoted to SDE3; mentored 2 SDE1s through complex implementations</p>
+        <p><strong>Team Development:</strong> Delivered Best Practices technical session; participated in document office hours with principal engineers</p>
+        <p><strong>Code Review Excellence:</strong> Promoted importance of detailed code reviews, breaking down complex changes, and readable implementations</p>
+        <p><strong>Project Mentorship:</strong></p>
+        <ul>
+          <li>Guided SDE1s through data pipeline implementations overcoming productivity barriers</li>
+          <li>Mentored SDE2s on data publisher design and multi-team coordination</li>
+          <li>Led design reviews for SDE2s providing detailed feedback on edge cases and operational implications</li>
+          <li>Created structured internship plan with clear milestones working with SDE2 and SDE3 mentors</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- KEY ACHIEVEMENTS & PATENTS (REPEATED AS PROVIDED) -->
+    <details class="section" open>
+      <summary>
+        <span>KEY ACHIEVEMENTS & PATENTS (REPEATED)</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li>✓ <strong>U.S. Patent 10,635,660</strong> – "Determining State of Database Applications" (developed during Tier-1 database migration)</li>
+          <li>✓ <strong>30+ Design Documents</strong> setting technical direction for teams across AWS Inspector and Prime Video</li>
+          <li>✓ <strong>3+ Reusable Tools & Frameworks</strong> adopted by multiple teams organization-wide reducing development time</li>
+          <li>✓ <strong>Zero Data Loss</strong> on revenue-critical metering launch through innovative shadow mode deployment strategy</li>
+          <li>✓ <strong>300K TPS at 20ms p99</strong> latency on geo-restriction platform; <strong>50× efficiency improvement</strong> on logistics optimization</li>
+          <li>✓ <strong>70% reduction</strong> in sports onboarding time (2 months → 2 weeks); <strong>30% reduction</strong> in operational overhead via ML automation</li>
+          <li>✓ <strong>60% reduction</strong> in false positives eliminating 8M+ daily errors; <strong>25B documents</strong> scaled with multi-cluster architecture</li>
+          <li>✓ <strong>20+ Teams</strong> collaborated with across organizations; successfully resolved competing team priorities</li>
+          <li>✓ <strong>10M+ notifications</strong> delivered across major sporting events reaching 800K+ customers per event</li>
+        </ul>
+      </div>
+    </details>
 
     <!-- EDUCATION -->
-    <div class="section">
-      <h2>Education</h2>
-      <ul>
-        <li><strong>PGP in ML & AI Business Applications</strong> — UT Austin (2024, GPA 4.33)</li>
-        <li><strong>B.Tech in Computer Science</strong> — IIITDM Jabalpur (CGPA 8.0)</li>
-      </ul>
-    </div>
+    <details class="section" open>
+      <summary>
+        <span>EDUCATION</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <p><strong>Post Graduate Program in ML and AI Business Applications</strong><br />
+          University of Texas, Austin | 2024 | Grade: A+ (4.33 GPA)
+        </p>
+        <p><strong>Bachelor of Technology in Computer Science</strong><br />
+          Indian Institute of Information Technology Design and Manufacturing, Jabalpur | 2007-2011 | CGPA: 8.0/10
+        </p>
+      </div>
+    </details>
+
+    <!-- PREVIOUS EXPERIENCE -->
+    <details class="section" open>
+      <summary>
+        <span>PREVIOUS EXPERIENCE</span>
+        <span class="hint">Click to collapse/expand</span>
+      </summary>
+      <div class="content">
+        <p><strong>Hewlett Packard</strong> | Software Engineer | Bengaluru, India | 2012-2013</p>
+        <p><strong>Infosys Ltd</strong> | Systems Engineer | Bengaluru, India | 2011-2012</p>
+      </div>
+    </details>
 
     <footer>
-      © Shardool Mishra — Detailed project documentation available upon request
+      Comprehensive project documentation and references available upon request
     </footer>
-
   </div>
 
   <script>
     const btn = document.getElementById("themeToggle");
 
-    function currentTheme() {
+    function theme() {
       return document.documentElement.getAttribute("data-theme") || "light";
     }
 
-    function updateToggleLabel() {
-      const t = currentTheme();
-      btn.textContent = t === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+    function setBtnLabel() {
+      btn.textContent = theme() === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
     }
 
     btn.addEventListener("click", () => {
-      const t = currentTheme();
-      const next = t === "dark" ? "light" : "dark";
+      const next = theme() === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", next);
       localStorage.setItem("theme", next);
-      updateToggleLabel();
+      setBtnLabel();
     });
 
-    updateToggleLabel();
+    setBtnLabel();
   </script>
 </body>
 </html>
