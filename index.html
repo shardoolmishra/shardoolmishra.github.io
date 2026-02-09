@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shardool Mishra | Senior Software Development Engineer</title>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #374151;
+      --subtle: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 10px 25px rgba(0,0,0,0.05);
+      --link: #2563eb;
+      --tag: #e5e7eb;
+      --tag-text: #1f2937;
+      --btn: #111827;
+      --btn-text: #ffffff;
+      --btn-hover: #0b1220;
+    }
+
+    /* Dark mode variables */
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --subtle: #9ca3af;
+      --border: #243244;
+      --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      --link: #60a5fa;
+      --tag: #1f2a3a;
+      --tag-text: #e5e7eb;
+      --btn: #e5e7eb;
+      --btn-text: #111827;
+      --btn-hover: #cbd5e1;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                   Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 48px 24px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--btn);
+      color: var(--btn-text);
+      border: 1px solid transparent;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(127,127,127,0.12);
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0 0 4px;
+    }
+
+    h2 {
+      margin-top: 48px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 6px;
+      font-size: 24px;
+    }
+
+    h3 { margin-top: 32px; font-size: 20px; }
+    h4 { margin-top: 16px; font-size: 17px; font-weight: 600; }
+
+    p { margin: 10px 0; }
+    ul { padding-left: 20px; }
+    li { margin: 6px 0; }
+
+    .header { margin-bottom: 12px; }
+
+    .title {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .contact {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .highlight {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin-top: 18px;
+      border: 1px solid var(--border);
+    }
+
+    .section { margin-top: 32px; }
+
+    .tag {
+      display: inline-block;
+      background: var(--tag);
+      color: var(--tag-text);
+      border-radius: 8px;
+      padding: 4px 10px;
+      margin: 6px 6px 0 0;
+      font-size: 13px;
+      border: 1px solid var(--border);
+    }
+
+    footer {
+      margin-top: 64px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--subtle);
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+    }
+  </style>
+
+  <script>
+    // Apply saved theme ASAP to avoid flash
+    (function () {
+      const saved = localStorage.getItem("theme");
+      if (saved === "dark" || saved === "light") {
+        document.documentElement.setAttribute("data-theme", saved);
+      } else {
+        // Optional: follow system preference by default
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Top actions -->
+    <div class="topbar">
+      <div></div>
+      <div class="actions">
+        <!-- Resume download (put resume.pdf in repo root) -->
+        <a class="btn" href="/resume.pdf" download>⬇️ Download Resume</a>
+
+        <!-- Dark mode toggle -->
+        <button class="btn secondary" id="themeToggle" type="button">🌙 Dark mode</button>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Shardool Mishra</h1>
+      <div class="title">Senior Software Development Engineer | Technical Leader</div>
+      <div class="contact">
+        📧 shardoolmishra3@gmail.com |
+        🔗 <a href="https://linkedin.com/in/shardoolmishra" target="_blank" rel="noreferrer">linkedin.com/in/shardoolmishra</a> |
+        📱 +1-512-599-3004
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="highlight">
+      <h2>Professional Summary</h2>
+      <p>
+        Senior technical leader with 12+ years of experience building large-scale distributed systems
+        across AWS Inspector, Prime Video Sports, and Amazon Logistics.
+        Proven track record of architecting mission-critical systems handling 300k+ TPS,
+        leading cross-organizational initiatives, and mentoring 10+ engineers.
+        U.S. Patent holder with deep expertise in distributed systems, security infrastructure,
+        ML-based automation, and operational excellence.
+      </p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <h2>Technical Skills</h2>
+
+      <p><strong>Languages & Frameworks</strong></p>
+      <span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span>
+      <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vue.js</span>
+      <span class="tag">Spring Boot</span><span class="tag">AWS Lambda</span>
+
+      <p><strong>AWS Services</strong></p>
+      <span class="tag">Inspector</span><span class="tag">EC2</span><span class="tag">S3</span>
+      <span class="tag">DynamoDB</span><span class="tag">CloudWatch</span>
+      <span class="tag">ECS</span><span class="tag">Fargate</span><span class="tag">OpenSearch</span>
+
+      <p><strong>Infrastructure & Tools</strong></p>
+      <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Flink</span>
+      <span class="tag">Terraform</span><span class="tag">CloudFormation</span>
+      <span class="tag">Git</span><span class="tag">CDK</span>
+
+      <p><strong>Specializations</strong></p>
+      <span class="tag">Distributed Systems</span>
+      <span class="tag">Security Infrastructure</span>
+      <span class="tag">OCSF Compliance</span>
+      <span class="tag">ML / AI Integration</span>
+      <span class="tag">Metering & Billing</span>
+      <span class="tag">Load Testing</span>
+      <span class="tag">Shadow Deployments</span>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="section">
+      <h2>Key Achievements & Patents</h2>
+      <ul>
+        <li><strong>U.S. Patent 10,635,660</strong> – Determining State of Database Applications</li>
+        <li>Architected platforms handling <strong>300K TPS at 20ms p99</strong></li>
+        <li>Scaled OpenSearch to <strong>25B documents</strong> using multi-cluster architecture</li>
+        <li>Delivered revenue-critical systems with <strong>zero data loss</strong></li>
+        <li>Reduced operational overhead by <strong>30–70%</strong> via automation & ML</li>
+        <li>Led initiatives spanning <strong>20+ teams</strong> across AWS & Prime Video</li>
+      </ul>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <h2>Professional Experience</h2>
+
+      <h3>Amazon Web Services (AWS)</h3>
+      <h4>AWS Inspector | Senior Software Development Engineer (2024 – Present)</h4>
+      <ul>
+        <li>Technical lead for OCSF security compliance integrations</li>
+        <li>Reduced onboarding time by 75% via reusable model generation framework</li>
+        <li>Led OpenSearch migration to multi-cluster architecture supporting 25B documents</li>
+        <li>Delivered container vulnerability scanning platform reducing false positives by 60%</li>
+        <li>Launched metering & billing system with zero revenue impact</li>
+      </ul>
+
+      <h3>Amazon</h3>
+      <h4>Prime Video Sports | Senior Software Development Engineer (2019 – 2024)</h4>
+      <ul>
+        <li>Architected geo-restriction platform handling 300K TPS globally</li>
+        <li>Built ML-based automation reducing operational overhead by 30%</li>
+        <li>Delivered real-time notification platform reaching 10M+ users</li>
+        <li>Defined domain architectures enabling parallel team execution</li>
+      </ul>
+
+      <h4>Amazon Logistics | Software Development Engineer II (2013 – 2019)</h4>
+      <ul>
+        <li>Invented cross-dock optimization delivering 50× efficiency gains</li>
+        <li>Improved warehouse configuration accuracy by 20%</li>
+      </ul>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <h2>Education</h2>
+      <ul>
+        <li><strong>PGP in ML & AI Business Applications</strong> — UT Austin (2024, GPA 4.33)</li>
+        <li><strong>B.Tech in Computer Science</strong> — IIITDM Jabalpur (CGPA 8.0)</li>
+      </ul>
+    </div>
+
+    <footer>
+      © Shardool Mishra — Detailed project documentation available upon request
+    </footer>
+
+  </div>
+
+  <script>
+    const btn = document.getElementById("themeToggle");
+
+    function currentTheme() {
+      return document.documentElement.getAttribute("data-theme") || "light";
+    }
+
+    function updateToggleLabel() {
+      const t = currentTheme();
+      btn.textContent = t === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+    }
+
+    btn.addEventListener("click", () => {
+      const t = currentTheme();
+      const next = t === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      updateToggleLabel();
+    });
+
+    updateToggleLabel();
+  </script>
+</body>
+</html>
